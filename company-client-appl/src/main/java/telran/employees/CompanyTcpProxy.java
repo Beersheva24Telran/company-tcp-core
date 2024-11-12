@@ -22,9 +22,9 @@ public class CompanyTcpProxy implements Company{
     }
 
     @Override
-    public int getDepartmentBudget(String arg0) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDepartmentBudget'");
+    public int getDepartmentBudget(String department) {
+        String responseData = tcpClient.sendAndReceive("getDepartmentBudget", department);
+        return Integer.parseInt(responseData);
     }
 
     @Override
@@ -36,21 +36,23 @@ public class CompanyTcpProxy implements Company{
     }
 
     @Override
-    public Employee getEmployee(long arg0) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEmployee'");
+    public Employee getEmployee(long id) {
+       String responseData = tcpClient.sendAndReceive("getEmployee", id + "");
+       return Employee.getEmployeeFromJSON(responseData);
     }
 
     @Override
     public Manager[] getManagersWithMostFactor() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getManagersWithMostFactor'");
+        String responseData = tcpClient.sendAndReceive("getManagersWithMostFactor",  "");
+        Manager[] res = new JSONArray(responseData).toList().stream().map(Object::toString)
+        .map(Employee::getEmployeeFromJSON).toArray(Manager[]::new);
+        return res;
     }
 
     @Override
-    public Employee removeEmployee(long arg0) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeEmployee'");
+    public Employee removeEmployee(long id) {
+        String responseData = tcpClient.sendAndReceive("removeEmployee",  "" + id);
+        return Employee.getEmployeeFromJSON(responseData);
     }
 
 }
