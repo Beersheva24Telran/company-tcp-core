@@ -1,6 +1,5 @@
-# HW 39 definition
-## company-client-appl
-### Write all methods of the class CompanyTcpProxy
+# HW 40 definition
+
 ## company-server-appl
-### Introduce CompanyProtocol class implementing Protocol interface
-### Write appropriate Main class for launcing TcpServer
+### Updating method getResponse of the class CompanyProtocol
+Replace switch-operator with method invocation by using Java Class-Reflection feature (see project class-reflection-scenarios (https://github.com/Beersheva24Telran/class-reflection-scenarios))
