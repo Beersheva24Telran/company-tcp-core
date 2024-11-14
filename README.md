@@ -1,5 +1,4 @@
-# HW 40 definition
+# HW 41 definition
 
 ## company-server-appl
-### Updating method getResponse of the class CompanyProtocol
-Replace switch-operator with method invocation by using Java Class-Reflection feature (see project class-reflection-scenarios (https://github.com/Beersheva24Telran/class-reflection-scenarios))
+### Provide functionality of periodical saving employees data into predefined file
