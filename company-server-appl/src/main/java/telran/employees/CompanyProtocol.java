@@ -30,10 +30,13 @@ public class CompanyProtocol implements Protocol {
         } catch (NoSuchMethodException e) {
             response = new Response(ResponseCode.WRONG_TYPE, requestType + " Wrong type");
            
-        } catch (Exception e) {
+        } catch (InvocationTargetException e) {
             Throwable causeExc = e.getCause();
             String message = causeExc == null ? e.getMessage() : causeExc.getMessage();
             response = new Response(ResponseCode.WRONG_DATA, message);
+        } catch (Exception e){
+            //only for finishing Server and printing out Exception full stack
+            throw new RuntimeException(e);
         }
        
         return response;
