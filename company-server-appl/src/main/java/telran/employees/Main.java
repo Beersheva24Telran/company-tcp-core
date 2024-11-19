@@ -15,6 +15,7 @@ public class Main {
                             persistable.restoreFromFile(FILE_NAME);
                             PersistableSaverThread saverThread = new PersistableSaverThread(persistable, FILE_NAME, TIME_INTERVAL);
                             saverThread.start();
+                            Runtime.getRuntime().addShutdownHook(new Thread(() -> persistable.saveToFile(FILE_NAME)));
             }
            
             TcpServer tcpServer = new TcpServer(new CompanyProtocol(company), PORT);

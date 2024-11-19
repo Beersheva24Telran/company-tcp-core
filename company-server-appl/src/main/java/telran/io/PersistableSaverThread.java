@@ -8,6 +8,7 @@ public class PersistableSaverThread extends Thread{
         this.persistable = persistable;
         this.fileName = fileName;
         this.timeInterval = timeInterval;
+        setDaemon(true);
     }
     @Override
     public void run(){
