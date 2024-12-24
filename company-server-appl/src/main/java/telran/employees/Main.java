@@ -1,5 +1,7 @@
 package telran.employees;
 
+import java.util.Scanner;
+
 import telran.io.Persistable;
 import telran.io.PersistableSaverThread;
 import telran.net.TcpServer;
@@ -19,6 +21,17 @@ public class Main {
             }
            
             TcpServer tcpServer = new TcpServer(new CompanyProtocol(company), PORT);
-            tcpServer.run();
+           new Thread(tcpServer).start();
+           Scanner scanner = new Scanner(System.in);
+           while(true) {
+            System.out.println("enter shutdown for stopping server");
+            String line = scanner.nextLine();
+            if(line.equals(
+                "shutdown"
+            )) {
+                tcpServer.shutdown();
+                break;
+            }
+           }
     }
 }
